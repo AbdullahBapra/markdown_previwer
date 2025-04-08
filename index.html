@@ -1,112 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Roman Numeral Converter</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin-top: 50px;
-      background: #f5f5f5;
-    }
-
-    #converter {
-      background: #fff;
-      padding: 2rem;
-      border-radius: 8px;
-      display: inline-block;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-
-    input {
-      padding: 0.5rem;
-      font-size: 1rem;
-      width: 150px;
-    }
-
-    button {
-      padding: 0.5rem 1rem;
-      font-size: 1rem;
-      margin-left: 1rem;
-      cursor: pointer;
-      background: #007bff;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-    }
-
-    #output {
-      margin-top: 1rem;
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: #333;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Markdown Previewer</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.0.12/marked.min.js"></script>
 </head>
 <body>
-  <div id="converter">
-    <h1>Roman Numeral Converter</h1>
-    <input id="number" type="number" placeholder="Enter a number"/>
-    <button id="convert-btn">Convert</button>
-    <div id="output"></div>
+  <div id="markdown-previewer">
+    <h1>Markdown Previewer</h1>
+    <div class="container">
+      <!-- Editor Section -->
+      <textarea id="editor" placeholder="Enter markdown here..."></textarea>
+      <!-- Preview Section -->
+      <div id="preview"></div>
+    </div>
   </div>
 
-  <script>
-    const convertBtn = document.getElementById("convert-btn");
-    const numberInput = document.getElementById("number");
-    const output = document.getElementById("output");
-
-    const toRoman = (num) => {
-      const romanMap = [
-        { value: 1000, numeral: "M" },
-        { value: 900, numeral: "CM" },
-        { value: 500, numeral: "D" },
-        { value: 400, numeral: "CD" },
-        { value: 100, numeral: "C" },
-        { value: 90, numeral: "XC" },
-        { value: 50, numeral: "L" },
-        { value: 40, numeral: "XL" },
-        { value: 10, numeral: "X" },
-        { value: 9, numeral: "IX" },
-        { value: 5, numeral: "V" },
-        { value: 4, numeral: "IV" },
-        { value: 1, numeral: "I" }
-      ];
-
-      let result = "";
-      for (let i = 0; i < romanMap.length; i++) {
-        while (num >= romanMap[i].value) {
-          result += romanMap[i].numeral;
-          num -= romanMap[i].value;
-        }
-      }
-      return result;
-    };
-
-    convertBtn.addEventListener("click", () => {
-      const value = numberInput.value;
-
-      if (value === "") {
-        output.textContent = "Please enter a valid number";
-        return;
-      }
-
-      const num = parseInt(value);
-
-      if (isNaN(num)) {
-        output.textContent = "Please enter a valid number";
-      } else if (num < 1) {
-        output.textContent = "Please enter a number greater than or equal to 1";
-      } else if (num >= 4000) {
-        output.textContent = "Please enter a number less than or equal to 3999";
-      } else {
-        output.textContent = toRoman(num);
-      }
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
-
-
